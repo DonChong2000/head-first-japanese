@@ -102,7 +102,7 @@ button.ja { font: inherit; background: var(--box); border: 2px solid var(--ja); 
 
 /* annotated sentence: native <ruby> with notes under the words */
 .annot { font-size: 1.7rem; text-align: center; margin: 2rem 0; line-height: 3.2; }
-.annot ruby { ruby-position: under; margin: 0 .2rem; }
+.annot ruby { ruby-position: under; ruby-align: center; margin: 0 .2rem; }
 .annot rt { font-family: var(--handf); color: var(--hand); font-size: .62em; line-height: 1.1; ruby-align: center; }
 .annot .ja rt { font-family: var(--jaf); color: var(--muted); font-size: .45em; }
 
