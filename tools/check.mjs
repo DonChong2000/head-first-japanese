@@ -47,6 +47,14 @@ for (const want of ['<span> opened 1, closed 0', 'sharpen box without answers', 
 let failed = 0;
 const report = (name, errs) => { for (const e of errs) { console.log(`${name}: ${e}`); failed++; } };
 
+// node tools/check.mjs ch/05-particles.html ... checks only those pages (for a chapter that isn't marked ready yet)
+const only = process.argv.slice(2);
+if (only.length) {
+  for (const rel of only) report(rel, checkPage(readFileSync(join(root, rel), 'utf8'), dirname(join(root, rel))));
+  console.log(failed ? `${failed} problem(s)` : `ok: ${only.length} page(s)`);
+  process.exit(failed ? 1 : 0);
+}
+
 const src = readFileSync(join(root, 'book.js'), 'utf8');
 const chapters = [...src.matchAll(/\['([\w-]+)', '[^']+', \d, ([01])\]/g)].map(m => ({ file: m[1], ready: m[2] === '1' }));
 assert(chapters.length > 30, 'could not read CHAPTERS from book.js');

@@ -97,3 +97,37 @@ Every page must read as if a Hong Kong teacher wrote it in Chinese.
 - Don't nest `aside` inside `aside`, because check.mjs pairs them with a non-greedy match.
 - `table.wide` inside `.table-wrap` for tables with 4+ columns, so phones scroll them sideways instead of squashing them. `table.kana` is the centred kana chart (big clickable kana + `<small>` romaji).
 - Japanese text that isn't clickable still needs `lang="ja"` so kanji get Japanese glyph shapes.
+
+## Cast (keep consistent across chapters)
+- **嘉欣**: from Hong Kong, Cantonese speaker, on a working holiday in Tokyo. Works part-time at a café in 下北沢, lives in a share house. Later (Part 3+) job-hunts.
+- **子軒**: from Taipei, Mandarin speaker, software engineer just transferred to the Osaka office. Brings in Kansai boxes and programming jokes.
+- **田中さん**: 嘉欣's Japanese housemate, university student, patient, speaks casually from Part 2.
+- **山本店長**: manager at the café, polite but strict (keigo examples).
+- **佐藤さん**: 子軒's team lead in Osaka (Kansai speech, workplace scenes).
+- Minor: 店員, 駅員, 区役所の人, 大家さん (landlord), 医者.
+
+## Syllabus: Parts 1–2
+Each chapter may only use grammar from itself and earlier chapters. Vocabulary: N5 words in Part 1, N4 words in Part 2 (new words get a gloss). Every kanji in Part 1 has furigana; in Part 2, kanji from the N5 list may drop it.
+
+| file | teaches | must include |
+|---|---|---|
+| 01-hiragana | kana chart, 濁音, 拗音, 促音, 長音, ん, 拍, a first look at pitch accent | done |
+| 02-katakana | katakana chart, ー, extended combos (ティ ファ ウィ ヴ), loanword sound rules (English → katakana: extra vowels, l/r → ラ行, -er → ー), 和製英語 (パソコン, コンセント, マンション) | en-note heavy; look-alikes シ/ツ ソ/ン; game; words only, plus set phrases (ありがとうございます, すみません) as chunks |
+| 03-desu | AはBです, じゃありません/ではありません, ですか questions, の (possessive / Noun の Noun), も, これ/それ/あれ/どれ, この/その/あの/どの, self-introduction (はじめまして, ～と申します as a chunk, よろしくお願いします), は read wa | annot sentence; zh-note: は ≈ 「呢個嘅話」/ topic, 的 ≈ の; programming joke: は sets the context/scope |
+| 04-kanji | 音讀 vs 訓讀, 送假名, ~80 core N5 kanji (numbers, 日月火水木金土, 人 山 川 上 下 中 大 小 本 学 生 先 年 円 時 分 半 今 何 行 来 食 飲 見 聞 読 書 話 買 休 言 出 入 会 社 電 車 駅 道 前 後 左 右 外 東 西 南 北 名 語 天 気 雨 花 男 女 子 父 母 友 高 安 新 古 長 多 少 白 赤 青), Japanese forms vs Traditional (学/學, 気/氣, 駅/驛, 読/讀), 漢字 false friends, Cantonese ↔ 音讀 correspondences (-k → く/き, -t → つ/ち, -p → う (from ふ), -ng → う/い, -m/-n → ん) | at least two `.kanji` cards; exam warm-up in 漢字読み format; zh-note on 呉音/漢音 briefly (人 にん/じん) |
+| 05-particles | を (object), に (time, destination, indirect object), で (place of action, means), へ (direction, read e), と (with, and), から/まで, が (subject, first look), の recap | SOV order; programming joke: particles = named arguments, so word order is flexible; fireside chat: に vs で |
+| 06-masu | verb groups (五段 / 一段 / する・来る), ます, ません, ました, ませんでした, ましょう / ませんか (invitations), ～たい (want to), time expressions (毎日, 明日, 昨日) | table of group rules; watch-it: 帰る / 入る / 走る look like 一段 but are 五段; zh-note: no tense in Chinese, 了 ≠ ました exactly |
+| 07-adjectives | い-adjectives (高い, 高くない, 高かった, 高くなかった), な-adjectives (静かです, 静かじゃありません, 静かでした), noun modification (高い山, 静かな町), いい → よくない, 好き/嫌い/上手/下手 + が, comparison: AはBより～, ～の中で～がいちばん | game; brain-power on why 好き takes が |
+| 08-numbers | 1–10000 (万 vs 千: 一万 not 十千, zh-note: 萬 works like Chinese), readings that shift (三百 さんびゃく, 六百 ろっぴゃく, 八千 はっせん), counters つ/人/本/枚/匹/個/回/歳 with sound changes, time (時, 分 ふん/ぷん, 半, 午前/午後), days of the week, dates (ついたち–とおか, 二十日), months, prices (円, いくらですか) | exam warm-up in listening format (▶ data-say prices/times, choose the answer); table.wide for counters |
+| 09-te-form | te-form rules by group (う/つ/る → って, む/ぶ/ぬ → んで, く → いて, ぐ → いで, す → して, 行く → 行って), ～てください, ～ています (ongoing action and resulting state: 結婚しています), ～てもいいですか, ～てはいけません, linking actions (～て、～て), ～てから | the rules as a chant (sing to a tune), game; programming joke: te-form = a pipe operator |
+| 10-aru-iru | あります (things) vs います (living things), location words (上 下 中 前 後ろ 隣 近く 間), ここ/そこ/あそこ/どこ, Place に Thing が あります vs Thing は Place に あります, 持っています, events: パーティーがあります | scene at the share house finding things; Kansai box (おる / おります preview, ある/おる in Kansai); exam warm-up |
+| p1-check | N5 mock in JLPT format: 文字・語彙 (問題1 漢字読み, 問題2 表記, 問題3 文脈規定, 問題4 言い換え類義), 文法 (問題1 文法形式の判断, 問題2 文の組み立て ★, 問題3 文章の文法), 読解 (問題4 短文, 問題5 中文, 問題6 情報検索), 聴解 (問題1 課題理解, 問題2 ポイント理解, 問題3 発話表現, 問題4 即時応答) with ▶ data-say scripts | all `aside.exam`; a scoring note at the end (aim 80% → move on); every item covers Chapters 1–10 only |
+| 11-plain-form | dictionary / ない / た / なかった forms of verbs, adjectives, nouns (だ), casual speech (だ dropped, よ/ね), ～と思います, ～と言いました, ～たことがあります, ～たり～たりします, ～んです (explaining) | fireside chat: です・ます vs plain; scene: 田中さん switches to casual; zh-note on politeness levels in Cantonese vs Japanese |
+| 12-potential | potential forms (書ける, 食べられる / ら抜き 食べれる noted as colloquial, できる, 来られる), ～ことができます, が with potentials, 見える/聞こえる vs 見られる/聞ける, ～ようになる | watch-it on ら抜き言葉 in exams |
+| 13-giving | あげる / くれる / もらう, direction of giving (in-group/out-group), ～てあげる / ～てくれる / ～てもらう, polite forms (さしあげる, くださる, いただく) as preview | diagram (inline SVG or table) of giving directions; game; zh-note: 「畀」/「給」 covers all three |
+| 14-conditionals | と (natural result), ば (general condition, ば-form rules), たら (once/if), なら (if that's the case), ～ても (even if), which to use when | decision table; fireside chat: たら vs ば; programming joke: if / when / on-event |
+| 15-volitional | volitional form (行こう, 食べよう, しよう), ～ましょう recap, ～(よ)うと思っています, ～つもりです, ～予定です, ～ことにする / ～ことになる, advice: ～たほうがいい / ～ないほうがいい | scene: New Year plans; exam warm-up |
+| 16-helpers | ～てみる, ～ておく, ～てしまう (and ちゃう), ～てある, 自動詞/他動詞 pairs (開く/開ける, 閉まる/閉める, つく/つける, 始まる/始める), ～ながら, ～すぎる, ～やすい / ～にくい | table of transitive pairs; programming joke: てしまう = an irreversible commit; game |
+| 17-passive-causative | passive (直接 and 迷惑の受身: 雨に降られた), causative (させる: make/let), causative-passive (させられる / 行かされる) | zh-note: 被 vs 受身 (Japanese passive is often "suffering"), 叫/讓 vs させる |
+| 18-keigo-basics | 丁寧語 recap, 尊敬語 (お～になる, special: いらっしゃる, 召し上がる, おっしゃる, ご覧になる, くださる), 謙譲語 (お～する, special: 参る, 申す, いただく, 拝見する, おる), ございます, keigo in shops and on the phone | scene: 山本店長 trains 嘉欣 at the café; programming joke: keigo = access levels (sudo); full 尊敬語/謙譲語 depth is Chapter 22 |
+| p2-check | N4 mock in JLPT format (same sections as N5 plus 文字・語彙 問題5 用法) | Chapters 11–18 focus, may reuse Part 1 |
