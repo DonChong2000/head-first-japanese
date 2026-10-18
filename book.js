@@ -49,6 +49,7 @@ const T = {
   well: '  よくできました！',
   furi: ['ふりがな 開', 'ふりがな 關'],
   rec: ['● 錄音', '■ 停止', '▶ 我的錄音'], noMic: '用不到麥克風。請在瀏覽器設定中允許這個網站使用麥克風。',
+  theme: ['切換至深色模式', '切換至淺色模式'],
   foot: '非官方戲仿作品，僅供個人學習。免費、非商業用途，與 O\'Reilly Media 及「深入淺出」系列無關。',
 };
 
@@ -59,6 +60,19 @@ const store = {
   get: k => { try { return localStorage.getItem(k); } catch { return null; } },
   set: (k, v) => { try { v ? localStorage.setItem(k, v) : localStorage.removeItem(k); } catch {} },
 };
+
+// ---- theme: follows the system until the reader picks one with the nav button
+const sysDark = matchMedia('(prefers-color-scheme: dark)');
+const isDark = () => (store.get('theme') || (sysDark.matches ? 'dark' : 'light')) === 'dark';
+const themeIcon = () => isDark() ? "<svg viewBox='0 0 24 24' aria-hidden='true'><circle cx='12' cy='12' r='4'/><path d='M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4'/></svg>" : "<svg viewBox='0 0 24 24' aria-hidden='true'><path d='M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z'/></svg>";
+const applyTheme = () => {
+  const t = store.get('theme'), html = document.documentElement;
+  if (t) html.dataset.theme = t; else delete html.dataset.theme;
+  const b = document.querySelector('button.theme');
+  if (b) { b.innerHTML = themeIcon(); b.setAttribute('aria-label', T.theme[+isDark()]); b.title = T.theme[+isDark()]; }
+};
+applyTheme();
+sysDark.addEventListener('change', applyTheme);
 
 // ---- speech: click any .ja to hear it. Furigana (<rt>) is dropped so it isn't read twice.
 let voices = [];
@@ -136,6 +150,7 @@ const furiText = () => furiOff() ? T.furi[1] : T.furi[0];
 document.body.classList.toggle('no-furi', furiOff());
 
 document.addEventListener('click', e => {
+  if (e.target.closest('button.theme')) { store.set('theme', isDark() ? 'light' : 'dark'); return applyTheme(); }
   const ja = e.target.closest('.ja');
   if (ja) return say(ja);
   const mic = e.target.closest('button.rec');
@@ -162,7 +177,7 @@ const bar = document.createElement('nav');
 bar.className = 'top';
 bar.innerHTML = `<a href="${new URL('index.html', root).href}">${T.book}</a>` +
   (i >= 0 ? `<span>${T.parts[CHAPTERS[i][2]]}</span>` : '') +
-  `<button class="furi" lang="ja">${furiText()}</button>`;
+  `<span class="tools"><button class="theme" aria-label="${T.theme[+isDark()]}" title="${T.theme[+isDark()]}">${themeIcon()}</button><button class="furi" lang="ja">${furiText()}</button></span>`;
 document.body.prepend(bar);
 
 if (i >= 0) {
