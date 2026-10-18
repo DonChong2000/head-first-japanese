@@ -67,6 +67,8 @@ if ('speechSynthesis' in window) { loadVoices(); speechSynthesis.addEventListene
 const spoken = el => {
   if (el.dataset.say) return el.dataset.say;
   const c = el.cloneNode(true);
+  // a katakana reading (嘉欣 → カーヤン) is how the word is said, so speak it instead of the kanji
+  c.querySelectorAll('ruby').forEach(r => { const rt = r.querySelector('rt')?.textContent || ''; if (/^[゠-ヿ]+$/.test(rt)) r.replaceWith(rt); });
   c.querySelectorAll('rt, rp').forEach(r => r.remove());
   return c.textContent;
 };
