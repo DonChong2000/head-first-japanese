@@ -99,8 +99,8 @@ Every page must read as if a Hong Kong teacher wrote it in Chinese.
 - Japanese text that isn't clickable still needs `lang="ja"` so kanji get Japanese glyph shapes.
 
 ## Cast (keep consistent across chapters)
-- **嘉欣**: from Hong Kong, Cantonese speaker, on a working holiday in Tokyo. Works part-time at a café in 下北沢, lives in a share house. Later (Part 3+) job-hunts.
-- **子軒**: from Taipei, Mandarin speaker, software engineer just transferred to the Osaka office. Brings in Kansai boxes and programming jokes.
+- **嘉欣** (in Japanese: カーヤン, katakana of her Cantonese name; furigana `<ruby>嘉欣<rt>カーヤン</rt></ruby>`): from Hong Kong, Cantonese speaker, on a working holiday in Tokyo. Works part-time at カフェ・ミモザ, a café in 下北沢, and lives in a share house. Later (Part 3+) job-hunts.
+- **子軒** (in Japanese: しけん, the Japanese on'yomi of his name, as many Taiwanese in Japan do): from Taipei, Mandarin speaker, software engineer just transferred to the Osaka office. Brings in Kansai boxes and programming jokes.
 - **田中さん**: 嘉欣's Japanese housemate, university student, patient, speaks casually from Part 2.
 - **山本店長**: manager at the café, polite but strict (keigo examples).
 - **佐藤さん**: 子軒's team lead in Osaka (Kansai speech, workplace scenes).
