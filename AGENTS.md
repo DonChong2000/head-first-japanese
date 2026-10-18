@@ -16,7 +16,7 @@ An unofficial parody of O'Reilly's Head First series (深入淺出 is the series
 
 ## Files
 - `book.js`: the `CHAPTERS` list (`[file, 中文 title, part, ready]`). Parts: 0 前言, 1 N5, 2 N4, 3 N3, 4 N2, 5 N1. Set `ready` to 1 when a chapter ships. It also handles speech, the answer checker, the furigana switch, nav and done ticks. An empty `<p class="rec"></p>` in a speaking exercise becomes a record button and a play-back button; the recording stays in the tab and is never uploaded.
-- `assets/cover.jpg`: the cover, 800 × 1072. For now it's a placeholder rendered from HTML; Don's Gemini-generated parody cover (深入淺出日語) replaces it at the same size.
+- `assets/cover.jpg`: Don's Gemini-generated parody cover (深入淺出日語), scaled to 800 × 1071. The full-size original is `cover.jpg` at the root, used by README.md.
 - `style.css`: all the box styles. Don't add per-chapter CSS.
 - `ch/NN-slug.html`: one chapter per file. Copy the head/foot from `ch/01-hiragana.html`.
 - `tools/check.mjs`: must pass. `tools/shot.mjs <outdir> <pages...>` screenshots light/dark × desktop/phone (uses `$CHROME`, else `/opt/pw-browsers/chromium`, else Chrome on Windows).
