@@ -1,0 +1,15 @@
+{
+  "name": "深入淺出日語",
+  "short_name": "日語",
+  "description": "非官方、非商業的 Head First 惡搞版日語課程，由五十音學到 JLPT N1。",
+  "lang": "zh-Hant",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fcfcf9",
+  "theme_color": "#fcfcf9",
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

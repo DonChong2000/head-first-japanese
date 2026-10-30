@@ -21,6 +21,13 @@ An unofficial parody of O'Reilly's Head First series (深入淺出 is the series
 - `ch/NN-slug.html`: one chapter per file. Copy the head/foot from `ch/01-hiragana.html`.
 - `tools/check.mjs`: must pass. `tools/shot.mjs <outdir> <pages...>` screenshots light/dark × desktop/phone (uses `$CHROME`, else `/opt/pw-browsers/chromium`, else Chrome on Windows).
 
+## Offline / PWA
+- The site is an installable offline PWA: `manifest.webmanifest` (linked from every page head, copy it from `ch/01-hiragana.html`), icons in `assets/` (`icon-192.png`, `icon-512.png`, `apple-touch-icon.png`, made from `assets/cover.jpg`), and `sw.js` at the site root. `book.js` registers it on every page (https only, so file:// is untouched).
+- `sw.js` precaches the files in its hard-coded `PRECACHE` list on install. Pages are network-first (new text shows when online, cached copy when not); css/js/images are served from cache and refreshed in the background; Google Fonts are cached the first time they load online.
+- **New chapter:** add `'ch/NN-slug.html'` to `PRECACHE` in `sw.js` and bump `VERSION` there. `node tools/check.mjs` fails if a `ch/*.html` is missing from `PRECACHE`, or if `PRECACHE` lists a file that doesn't exist.
+- Bump `VERSION` whenever you ship, so phones drop the old cache.
+- Offline speech only works if the device has a local ja-JP voice; Edge "Natural" online voices need a network.
+
 ## Chapter shape (see ch/01-hiragana.html)
 1. `p.chapter-no`, `h1`, `p.lede` (one-line hook)
 2. A `div.scene` comic dialogue that sets up the problem, set in Japan (Haneda, a konbini, the ward office, an Osaka izakaya, a job interview, a share house)

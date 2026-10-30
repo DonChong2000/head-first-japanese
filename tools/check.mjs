@@ -62,6 +62,14 @@ const pages = existsSync(join(root, 'ch')) ? readdirSync(join(root, 'ch')).filte
 for (const c of chapters) if (c.ready && !pages.includes(c.file)) report('book.js', [`${c.file} is marked ready but ch/${c.file}.html is missing`]);
 for (const f of pages) if (!chapters.some(c => c.ready && c.file === f)) report('book.js', [`ch/${f}.html exists but isn't a ready chapter in CHAPTERS`]);
 
+// offline cache: every ch/*.html and the PWA files must be in sw.js's PRECACHE (see AGENTS.md "Offline / PWA")
+const sw = readFileSync(join(root, 'sw.js'), 'utf8');
+const precache = [...(sw.match(/const PRECACHE = \[([\s\S]*?)\];/)?.[1] ?? '').matchAll(/'([^']+)'/g)].map(m => m[1]);
+assert(precache.length > 5, 'could not read PRECACHE from sw.js');
+for (const f of pages) if (!precache.includes(`ch/${f}.html`)) report('sw.js', [`PRECACHE is missing ch/${f}.html`]);
+for (const p of precache) if (p !== './' && !existsSync(join(root, p))) report('sw.js', [`PRECACHE lists ${p} but the file doesn't exist`]);
+for (const p of ['index.html', 'style.css', 'book.js', 'manifest.webmanifest']) if (!precache.includes(p)) report('sw.js', [`PRECACHE is missing ${p}`]);
+
 const page = (rel, dir) => report(rel, checkPage(readFileSync(join(root, rel), 'utf8'), dir));
 page('index.html', root);
 for (const f of pages) page(`ch/${f}.html`, join(root, 'ch'));

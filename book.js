@@ -55,6 +55,7 @@ const T = {
 
 const root = new URL('.', document.currentScript.src);   // site root, where book.js lives
 const href = f => new URL('ch/' + f + '.html', root).href;
+if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) navigator.serviceWorker.register(new URL('sw.js', root).href).catch(() => {});   // offline cache, see sw.js
 const here = location.pathname.split('/').pop().replace('.html', '');
 const store = {
   get: k => { try { return localStorage.getItem(k); } catch { return null; } },
