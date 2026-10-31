@@ -30,7 +30,7 @@ const CHAPTERS = [
   ['24-listening-n3', 'N3 聽解：日常會話', 3, 0],
   ['p3-check', '第三部分 N3 自測', 3, 0],
   ['25-n2-grammar', 'N2 文法：書面句型', 4, 1],
-  ['26-written-style', 'である體與新聞日語', 4, 0],
+  ['26-written-style', 'である體與新聞日語', 4, 1],
   ['27-onomatopoeia', '擬聲語與擬態語', 4, 0],
   ['28-business', '職場日語：電郵、會議、電話', 4, 0],
   ['29-long-reading', '長文閱讀與速讀', 4, 0],
