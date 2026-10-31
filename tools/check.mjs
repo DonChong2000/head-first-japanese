@@ -5,6 +5,7 @@ import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import assert from 'node:assert';
+import vm from 'node:vm';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const TAGS = ['main', 'aside', 'details', 'table', 'ol', 'ul', 'dl', 'select', 'ruby', 'div', 'span', 'button'];
@@ -30,6 +31,7 @@ export function checkPage(html, dir) {
   }
   for (const [, url] of html.matchAll(/(?:href|src)="([^"#]+)/g))
     if (!/^(https?:|mailto:)/.test(url) && !existsSync(join(dir, url))) errs.push(`broken link ${url}`);
+  if (html.includes('。。')) errs.push('doubled 。。');
   if (!/<title>[^<]+<\/title>/.test(html)) errs.push('missing <title>');
   if (!/<script src="(\.\.\/)*book\.js"><\/script>/.test(html)) errs.push('missing book.js');
   if (!html.includes('<html lang="zh-Hant">')) errs.push('<html lang> should be "zh-Hant"');
@@ -38,10 +40,10 @@ export function checkPage(html, dir) {
 
 // self-test: a page with every kind of mistake must fail on each one
 const broken = `<title>x</title><main><aside class="sharpen"><h4>S</h4><select data-answer="はい"><option>いいえ</option></select></aside>
-<span class="ja">a <a href="nope.html">x</a> <ruby>字</ruby></main>`;
+<span class="ja">a <a href="nope.html">x</a> <ruby>字</ruby>。。</main>`;
 const found = checkPage(broken, root).join('\n');
 for (const want of ['<span> opened 1, closed 0', 'sharpen box without answers', 'select answer "はい"', 'field without aria-label',
-  'ruby without <rt>', 'broken link nope.html', 'missing book.js', '<html lang>'])
+  'ruby without <rt>', 'broken link nope.html', 'missing book.js', '<html lang>', 'doubled 。。'])
   assert(found.includes(want), `self-test: check missed "${want}"`);
 
 let failed = 0;
@@ -64,6 +66,9 @@ for (const f of pages) if (!chapters.some(c => c.ready && c.file === f)) report(
 
 // offline cache: every ch/*.html and the PWA files must be in sw.js's PRECACHE (see AGENTS.md "Offline / PWA")
 const sw = readFileSync(join(root, 'sw.js'), 'utf8');
+// a merge-conflict marker or typo in sw.js silently stops the service worker from installing
+assert.throws(() => new vm.Script('<<<<<<< HEAD\nconst a = 1;'), SyntaxError, 'self-test: vm.Script should reject a conflict marker');
+try { new vm.Script(sw, { filename: 'sw.js' }); } catch (e) { report('sw.js', [`does not parse: ${e.message}`]); }
 const precache = [...(sw.match(/const PRECACHE = \[([\s\S]*?)\];/)?.[1] ?? '').matchAll(/'([^']+)'/g)].map(m => m[1]);
 assert(precache.length > 5, 'could not read PRECACHE from sw.js');
 for (const f of pages) if (!precache.includes(`ch/${f}.html`)) report('sw.js', [`PRECACHE is missing ch/${f}.html`]);
