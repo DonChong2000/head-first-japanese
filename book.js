@@ -22,7 +22,7 @@ const CHAPTERS = [
   ['17-passive-causative', '被動與使役', 2, 1],
   ['18-keigo-basics', '敬語入門', 2, 1],
   ['p2-check', '第二部分 N4 自測', 2, 1],
-  ['19-noun-modifiers', '名詞修飾：日語的「的」字句', 3, 0],
+  ['19-noun-modifiers', '名詞修飾：日語的「的」字句', 3, 1],
   ['20-seems', '推測：ようだ、そうだ、らしい、みたい', 3, 0],
   ['21-hazu-wake-beki', 'はず、わけ、べき', 3, 0],
   ['22-keigo', '尊敬語與謙讓語', 3, 0],
