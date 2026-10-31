@@ -173,6 +173,15 @@ const doneText = () => store.get('done:' + here) ? T.undo : T.done;
 document.querySelectorAll('span.ja').forEach(s => { s.tabIndex = 0; s.setAttribute('role', 'button'); s.lang = 'ja'; });
 if (window.MediaRecorder) document.querySelectorAll('p.rec').forEach(p => { p.innerHTML = `<button class="rec">${T.rec[0]}</button> <button class="rec" hidden>${T.rec[2]}</button>`; });
 
+// shuffle each select's options on load so the answer can't be guessed by position (the empty first option stays first).
+// Numeric choices (1/2/3/4 pointing at a numbered list) keep their order. The checker compares values, so shuffling is safe.
+document.querySelectorAll('select[data-answer]').forEach(s => {
+  const opts = [...s.options].slice(1);
+  if (s.options[0]?.textContent || opts.every(o => /^[\d０-９①-⑩,.\s円]+$/.test(o.textContent))) return;
+  for (let k = opts.length - 1; k > 0; k--) { const j = Math.floor(Math.random() * (k + 1)); [opts[k], opts[j]] = [opts[j], opts[k]]; }
+  opts.forEach(o => s.append(o));
+});
+
 const i = CHAPTERS.findIndex(c => c[0] === here);
 const bar = document.createElement('nav');
 bar.className = 'top';
