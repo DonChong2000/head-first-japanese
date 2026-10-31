@@ -26,6 +26,7 @@ const PRECACHE = [
   'ch/33-listening-speed.html',
   'ch/29-long-reading.html',
   'ch/p4-check.html',
+  'ch/34-mock-exam.html',
 ];
 
 self.addEventListener('install', e => {
