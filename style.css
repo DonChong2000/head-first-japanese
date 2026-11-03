@@ -137,6 +137,12 @@ h3 { font-size: 1.3rem; margin: 2rem 0 .5rem; }
 .ja { color: var(--ja); cursor: pointer; border-bottom: 2px dotted currentColor; }
 .ja:hover, .ja:focus-visible { background: color-mix(in srgb, var(--ja) 12%, transparent); outline: none; }
 .ja.speaking { background: color-mix(in srgb, var(--ja) 22%, transparent); }
+/* sound-change tables (table.mark-irr): every reading stays red (red = tap to hear, as ch00 promises);
+   the ones that change (span.ja.irr) are bold on a tinted pill. */
+table.mark-irr .ja { white-space: nowrap; }
+table.mark-irr .ja.irr { font-weight: 700; padding: .05em .35em; border-radius: .3em; background: color-mix(in srgb, var(--ja) 18%, transparent); }
+table.mark-irr .ja.irr:hover, table.mark-irr .ja.irr:focus-visible { background: color-mix(in srgb, var(--ja) 32%, transparent); }
+table.mark-irr .ja.irr.speaking { background: color-mix(in srgb, var(--ja) 45%, transparent); }
 button.ja { font: inherit; background: var(--box); border: 2px solid var(--ja); border-radius: 2rem; padding: .15rem .8rem; }
 .zh, [lang^="zh"] { font-family: var(--zhf); }
 .ja, [lang="ja"] { font-family: var(--jaf); }
