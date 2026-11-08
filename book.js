@@ -12,6 +12,7 @@ const CHAPTERS = [
   ['08-numbers', '數字、助數詞、時間與價錢', 1, 1],
   ['09-te-form', 'て形：請求、進行與連接', 1, 1],
   ['10-aru-iru', 'あります、います與位置', 1, 1],
+  ['p1-summary', '第一部分 N5 總結', 1, 1],
   ['p1-check', '第一部分 N5 自測', 1, 1],
   ['11-plain-form', '普通形與日常口語', 2, 1],
   ['12-potential', '可能形：會做、能做', 2, 1],
@@ -21,6 +22,7 @@ const CHAPTERS = [
   ['16-helpers', '動詞小幫手：てみる、ておく、てしまう、ながら', 2, 1],
   ['17-passive-causative', '被動與使役', 2, 1],
   ['18-keigo-basics', '敬語入門', 2, 1],
+  ['p2-summary', '第二部分 N4 總結', 2, 1],
   ['p2-check', '第二部分 N4 自測', 2, 1],
   ['19-noun-modifiers', '名詞修飾：日語的「的」字句', 3, 1],
   ['20-seems', '推測：ようだ、そうだ、らしい、みたい', 3, 1],
@@ -28,17 +30,20 @@ const CHAPTERS = [
   ['22-keigo', '尊敬語與謙讓語', 3, 1],
   ['23-reading-n3', 'N3 閱讀：短文與告示', 3, 1],
   ['24-listening-n3', 'N3 聽解：日常會話', 3, 1],
+  ['p3-summary', '第三部分 N3 總結', 3, 1],
   ['p3-check', '第三部分 N3 自測', 3, 1],
   ['25-n2-grammar', 'N2 文法：書面句型', 4, 1],
   ['26-written-style', 'である體與新聞日語', 4, 1],
   ['27-onomatopoeia', '擬聲語與擬態語', 4, 1],
   ['28-business', '職場日語：電郵、會議、電話', 4, 1],
   ['29-long-reading', '長文閱讀與速讀', 4, 1],
+  ['p4-summary', '第四部分 N2 總結', 4, 1],
   ['p4-check', '第四部分 N2 自測', 4, 1],
   ['30-n1-grammar', 'N1 文法：文言殘留句型', 5, 1],
   ['31-n1-vocab', 'N1 詞彙：四字熟語與難讀漢字', 5, 1],
   ['32-editorials', '讀懂社論與評論', 5, 1],
   ['33-listening-speed', '聽懂正常語速', 5, 1],
+  ['p5-summary', '第五部分 N1 總結', 5, 1],
   ['34-mock-exam', 'N1 完整模擬考試', 5, 1],
 ];
 const T = {
@@ -210,7 +215,7 @@ const toc = document.getElementById('toc');
 if (toc) {
   let n = 0;
   toc.innerHTML = T.parts.map((p, pi) => `<h3>${p}</h3><ol>` + CHAPTERS.filter(c => c[2] === pi).map(c => {
-    const no = c[0].startsWith('p') ? '✔' : String(n++).padStart(2, '0');
+    const no = c[0].endsWith('summary') ? '≡' : c[0].startsWith('p') ? '✔' : String(n++).padStart(2, '0');
     const t = c[3] ? `<a href="${href(c[0])}">${c[1]}</a>` : `<span class="soon">${c[1]}${T.soon}</span>`;
     return `<li><span class="n">${no}</span>${t}${store.get('done:' + c[0]) ? ' <span class="tick">✓</span>' : ''}</li>`;
   }).join('') + '</ol>').join('');

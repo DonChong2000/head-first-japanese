@@ -1,6 +1,6 @@
 // 深入淺出日語: offline support. Bump VERSION when you ship (new chapter, edited book.js/style.css) so old caches are dropped.
 // tools/check.mjs fails if a file in ch/ is missing from PRECACHE.
-const VERSION = 'v29';
+const VERSION = 'v30';
 const CACHE = 'hfj-' + VERSION;
 const PRECACHE = [
   './', 'index.html', 'style.css', 'book.js', 'manifest.webmanifest',
@@ -28,6 +28,7 @@ const PRECACHE = [
   'ch/29-long-reading.html',
   'ch/p4-check.html',
   'ch/34-mock-exam.html',
+  'ch/p1-summary.html', 'ch/p2-summary.html', 'ch/p3-summary.html', 'ch/p4-summary.html', 'ch/p5-summary.html',
 ];
 
 self.addEventListener('install', e => {
